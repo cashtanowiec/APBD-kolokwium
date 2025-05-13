@@ -43,6 +43,8 @@ public class BookingsService : IBookingsService
             await _bookingsRepository.CheckIfEmployeeExists(connection, bookingDto.EmployeeNumber);
             await _bookingsRepository.CheckIfAttractionExists(connection, bookingDto.Attractions);
             await _bookingsRepository.Add(connection, bookingDto);
+
+            await transaction.CommitAsync();
         }
         catch (Exception)
         {
